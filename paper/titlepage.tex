@@ -1,47 +1,63 @@
 % ====================================================
-% Title Page – Bericht D6.1
+% Title Page – INNOnet Deliverable (native, dynamic)
+%
+% Reproduces the INNOnet deliverable cover in native LaTeX so that title,
+% authors, date and version are editable text instead of a fixed PDF page.
+% The fixed branding (funding banner, INNOnet logo, partner-logo strip) is
+% kept as images in paper/figures/cover/.
+%
+% To change the cover, just edit the \report... macros below.
 % ====================================================
 
-\makeatletter
-\patchcmd{\@footnotetext}{\footnotesize}{\scriptsize}{}{}
-\makeatother
-
-% ----------------------
-% Title
-% ----------------------
-\title{
-    \vspace{0cm}
-    D6.1 Quantitative Ergebnisse der Demos \\
-    \vspace{0.4cm}
-    \Large Darstellung der Effekte lastabhängiger Tarife als Beitrag zu Szenarien der Energiewende \\
-    \vspace{1.2cm}
+% ---- Dynamic cover fields -------------------------------------------------
+\newcommand{\reportkicker}{Deliverable 6.1}
+\newcommand{\reporttitle}{Quantitative Ergebnisse der Demos sowie Darstellung
+  der Effekte lastabh\"angiger Tarife als Beitrag zu Szenarien der Energiewende}
+\newcommand{\reportauthors}{%
+  Benjamin Kirchler -- Energieinstitut an der JKU Linz\\
+  Andrea Kollmann -- Energieinstitut an der JKU Linz%
 }
+\newcommand{\reportdate}{\today}
+\newcommand{\reportversion}{1.0}
+% ---------------------------------------------------------------------------
 
-% ----------------------
-% Author
-% ----------------------
-\author{
-    \textbf{Benjamin Kirchler}\textsuperscript{a}
+\definecolor{coverblue}{HTML}{3B8FD1}
+
+\newcommand{\makecoverpage}{%
+\begin{titlepage}
+\thispagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% Funding banner, top right
+\hfill\includegraphics[width=0.60\textwidth]{paper/figures/cover/funding_banner.png}
+
+\vspace{1.1cm}
+
+% INNOnet logo
+\includegraphics[width=0.50\textwidth]{paper/figures/cover/innonet_logo.jpg}
+
+\vspace{1.7cm}
+
+% Kicker + title + authors
+{\large\bfseries\color{coverblue}\reportkicker\par}
+\vspace{0.5cm}
+{\fontsize{24}{30}\selectfont\bfseries\reporttitle\par}
+\vspace{1.4cm}
+{\large\reportauthors\par}
+
+\vfill
+
+% Date and version
+{\large \reportdate\par}
+{\large Version~\reportversion\par}
+
+\vspace{0.9cm}
+
+% Partner-logo strip, full width
+\noindent\includegraphics[width=\textwidth]{paper/figures/cover/partner_strip.png}
+
+\vspace{0.3cm}
+{\footnotesize\color{gray}DELIVERABLE \quad\textbar\quad \thepage}
+\end{titlepage}
 }
-
-% ----------------------
-% Affiliation
-% ----------------------
-\makeatletter
-\let\oldmakefnmark\@makefnmark
-\renewcommand{\@makefnmark}{}
-
-\footnotetext{%
-    \textsuperscript{a}Energieinstitut an der JKU Linz,
-    Altenberger Straße 69,
-    4040 Linz, Austria;
-    \texttt{kirchler@energieinstitut-linz.at}%
-}
-
-\let\@makefnmark\oldmakefnmark
-\makeatother
-
-% ----------------------
-% Date
-% ----------------------
-\date{\today}
