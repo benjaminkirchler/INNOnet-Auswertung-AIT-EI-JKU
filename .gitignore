@@ -1,0 +1,40 @@
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# Data (never commit real data)
+data/raw/*
+data/interim/*
+data/final/*
+data/processed/*
+!data/**/.keep
+!data/processed/analysis_data.csv
+
+# Output
+output/*
+!output/
+!output/models/
+!output/**/.keep
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.toc
+
+# renv library (keep renv.lock and settings, ignore the local library)
+renv/library/
+renv/local/
+renv/staging/
+
+# OS / editor
+.DS_Store
+Thumbs.db
