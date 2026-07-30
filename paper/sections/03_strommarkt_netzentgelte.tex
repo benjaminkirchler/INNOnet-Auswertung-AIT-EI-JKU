@@ -18,32 +18,3 @@ Die Anforderungen an das Verteilnetz haben sich in den vergangenen Jahren grundl
 
 Das eigentliche Netzproblem ist dabei nicht der Jahresverbrauch an sich, sondern die \textit{Gleichzeitigkeit}: Wenn viele Haushalte in einem Quartier ihre Wärmepumpen gleichzeitig hochregeln oder ihre Fahrzeuge gemeinsam nach der Heimkehr laden, entsteht eine lokale Lastspitze, die das Verteilnetz an seine Kapazitätsgrenzen bringen kann. Netze müssen jedoch für diese Spitzen ausgebaut werden, auch wenn sie nur wenige Stunden pro Jahr auftreten \parencite{borenstein2016, simshauser2016}.
 
-
-\subsection{Netzentgelte: Funktion und Grenzen des Status quo}
-
-Netzentgelte finanzieren die gesamte Infrastruktur des Verteilnetzes: Kabel, Transformatoren, Schaltanlagen, Zähler sowie Entstörungs-, Wartungs- und Erneuerungsbetrieb. Es handelt sich dabei im Wesentlichen um \textit{Fixkosten}: Die Infrastruktur muss bereitstehen, unabhängig davon, wie viel Energie gerade transportiert wird \parencite{borenstein2016}.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=1\linewidth]{paper/figures/Theory.png}
-    \caption{Schematische Einordnung klassischer und lastabhängiger Netzentgelte.}
-    \label{fig:theory_network_tariffs}
-\end{figure}
-
-Wie in weiten Teilen Europas setzt sich das klassische Netzentgelt in Österreich aus einem Arbeitspreis (pro kWh), einem Leistungspreis (pro kW Anschlussleistung oder Jahreshöchstlast) sowie fixen Bereitstellungsentgelten zusammen \parencite{econtrolSystemnutzungsentgelte}.
-Der Arbeitspreis ist dabei zeitlich uniform: Es ist egal, ob ein Haushalt seine Waschmaschine um 7 Uhr morgens oder um 22 Uhr betreibt, ob er sein Elektrofahrzeug am Sonntagmittag oder am Montagabend lädt – der Netzpreis ist immer derselbe.
-
-Aus ökonomischer Sicht ist das aus mehreren Gründen problematisch. Einerseits entstehen die relevanten Kosten eines Netzes maßgeblich durch Spitzenlasten, nicht durch den Durchschnittsverbrauch. Wenn die Kosten durch Spitzen bestimmt werden, sollte das Preissignal genau diese Spitzen adressieren. Dieses Prinzip ist in der ökonomischen Theorie als \textit{Peak-Load Pricing} bekannt \parencite{boiteux1960, williamson1966}. Andererseits honoriert ein einheitlicher Arbeitspreis weder das frühere Laden des Elektroautos noch den späteren Betrieb der Wärmepumpe, weshalb er keinen Anreiz zur zeitlichen Verschiebung des Verbrauchs gibt. Damit bleibt ein potenzieller Effizienzgewinn ungenutzt.
-
-
-
-Die Regulierungsbehörden auf europäischer Ebene haben dieses Problem erkannt. Der \textit{Council of European Energy Regulators} (CEER) hat in seinen Berichten zu Distribution Network Tariffs darauf hingewiesen, dass zeitvariable oder lastabhängige Tarifsignale besser geeignet wären, die tatsächliche Netzbelastung abzubilden -- insbesondere angesichts der wachsenden Verbreitung steuerbarer Lasten \parencite{ceerDistributionTariffs2020, schittekatte2021}.
-
-\textit{Dynamische Netzentgelte} sind ein Instrument, das diesen Zusammenhang aufgreift: Indem Netzentgelte zu Stunden höherer Netzbelastung höher und zu Stunden geringer Belastung niedriger angesetzt werden, erhalten Haushalte ein Preissignal, das eine zeitliche Verschiebung des Verbrauchs anreizen kann. Theoretisch können damit Lastspitzen abgeflacht, Netzausbau verringert und Systemkosten gesenkt werden. Ob und in welchem Ausmaß Haushalte auf solche Signale reagieren, ist hingegen eine empirische Frage, zu der die Literatur bislang heterogene Befunde liefert \parencite{faruquiSergici2010, newshamBowker2010}.
-
-
-Dynamische Netzentgelte klingen in der Theorie plausibel. Die entscheidende Frage ist, was in der Praxis passiert: Reagieren Haushalte tatsächlich auf zeitvariable Netzsignale -- und wenn ja, wie stark, bei welchen Verbrauchern und unter welchen Bedingungen?
-
-Diese Frage ist keineswegs trivial. Die finanziellen Anreize aus Netzentgelten sind im Verhältnis zum gesamten Haushaltsstrombudget gering. Die Tarifsignale sind oft komplex und im Alltag konkurrieren viele andere Faktoren mit dem Ziel der Verbrauchsverschiebung. Starke Verhaltenseffekte sind daher nicht selbstverständlich. Umso wichtiger ist es, mit einem sorgfältigen Studiendesign zu messen, was tatsächlich geschieht, statt die Wirkung regulatorischer Tarifinnovationen nur theoretisch herzuleiten.
-
-Hier setzt das INNOnet-Projekt an, um diese empirische Forschungslücke für den österreichischen Kontext zu schließen. Untersucht wird, inwiefern Haushaltskunden ihren Stromverbrauch als Reaktion auf dynamische Netzentgelte anpassen, wenn die Tarifkomplexität durch eine bereitgestellte App reduziert wird. Der folgende Abschnitt beschreibt das zugrundeliegende experimentelle Tarifdesign sowie die technische Umsetzung der Informationsbereitstellung.
