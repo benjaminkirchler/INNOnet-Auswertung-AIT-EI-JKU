@@ -1,14 +1,17 @@
 % ====================================================
-% Preamble – Working Paper Template
+% Preamble – Report Template (German)
 % ====================================================
 
 \usepackage[onehalfspacing]{setspace}
 \usepackage{rotating}
-
+\usepackage{sectsty}
+\sectionfont{\color{headingcolor}}
+\subsectionfont{\color{headingcolor}}
+\subsubsectionfont{\color{headingcolor}}
 % Font and language
 \usepackage[T1]{fontenc}
 \usepackage[sc]{mathpazo}
-\usepackage[english]{babel}
+\usepackage[ngerman]{babel}
 \usepackage{scalefnt}
 
 % Typography
@@ -24,11 +27,21 @@
 
 % Quotes and structure
 \usepackage{csquotes}
-% \usepackage{breakcites} % usually not needed with biblatex
 \usepackage{endnotes}
 \usepackage[nottoc]{tocbibind}
 \usepackage[title,titletoc,toc]{appendix}
+\usepackage{pgfgantt} % Zeitachse
 
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{float}
+
+\usetikzlibrary{
+arrows.meta,
+positioning,
+decorations.pathreplacing,
+calc
+}
 % Enumerate style
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
 \renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
@@ -39,6 +52,12 @@
 \usepackage[svgnames, dvipsnames]{xcolor}
 \definecolor{linkblue}{HTML}{6594C2}
 
+\definecolor{headingcolor}{HTML}{862630}
+\definecolor{goalcolor}{HTML}{3FA99A}
+\definecolor{reportred}{HTML}{862630}
+\usepackage[table]{xcolor}
+\definecolor{gaincolor}{HTML}{862630}
+\definecolor{losscolor}{HTML}{6594C2}
 \usepackage[
     colorlinks=true,
     linkcolor=linkblue,
@@ -49,10 +68,41 @@
 
 \usepackage{etoolbox}
 
+\usepackage[most]{tcolorbox}
+
+\newtcolorbox{goalbox}[1][]{
+  colback=goalcolor!10,
+  colframe=goalcolor,
+  boxrule=1pt,
+  arc=4pt,
+  left=12pt,
+  right=12pt,
+  top=10pt,
+  bottom=10pt,
+  fonttitle=\bfseries\large\color{black},
+  halign title=left,
+  title=#1
+}
+
+\newtcolorbox{infobox}[1][]{
+  colback=gray!12,
+  colframe=headingcolor,
+  boxrule=1pt,
+  arc=4pt,
+  left=12pt,
+  right=12pt,
+  top=10pt,
+  bottom=10pt,
+  fonttitle=\bfseries\large\color{white},
+  halign title=left,
+  title=#1
+}
+
 % Figures
 \usepackage{graphicx}
+\usepackage{pdfpages}
 \usepackage{wrapfig}
-\graphicspath{{figures/}}
+\graphicspath{{paper/figures/}}
 \usepackage{array}
 \usepackage{fancyhdr}
 \setlength{\headheight}{15pt}
@@ -86,7 +136,8 @@
 \usepackage{longtable}
 \usepackage{threeparttable}
 \usepackage{caption}
-\captionsetup[table]{labelsep=space,justification=raggedright,singlelinecheck=false}
+\captionsetup[table]{labelsep=colon,justification=raggedright,singlelinecheck=false}
+\captionsetup[figure]{labelsep=colon,justification=raggedright,singlelinecheck=false}
 \usepackage{multirow}
 \usepackage{subcaption}
 \usepackage{morefloats}
@@ -145,3 +196,5 @@
 
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
+\setlength{\parskip}{0.6em}
+\setlength{\parindent}{0pt}

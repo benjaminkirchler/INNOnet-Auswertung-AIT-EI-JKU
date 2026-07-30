@@ -3,13 +3,8 @@
 .RData
 .Rproj.user/
 
-# Data (never commit real data)
-data/raw/*
-data/interim/*
-data/final/*
-data/processed/*
-!data/**/.keep
-!data/processed/analysis_data.csv
+# Data (kept local only, not pushed)
+data/
 
 # Output
 output/*
@@ -38,3 +33,13 @@ renv/staging/
 # OS / editor
 .DS_Store
 Thumbs.db
+
+# AI/agent tooling artifacts (kept locally, not pushed)
+CLAUDE.md
+.claude/
+AGENT_LOG.md
+IMPLEMENTATION_PLAN.md
+TODO.md
+
+# R scripts (kept local only, not pushed)
+R/
