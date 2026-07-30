@@ -2,7 +2,8 @@
 # masterfile.R
 #
 # Purpose:
-# Run the full analysis pipeline from raw data to final tables & figures.
+# Generate the report figures and tables from the final processed panel_15m
+# dataset. No raw loading/cleaning here - see innonet-tariff-analysis for that.
 ###############################################################################
 
 rm(list = ls())
@@ -10,17 +11,8 @@ gc()
 
 message("Starting masterfile...")
 
-source("R/00_setup.R")
-source("R/01_load_data.R")
-source("R/02_cleaning.R")
-source("R/03_descriptives.R")
-source("R/04_analysis.R")
-source("R/05_tables_figures.R")
-
-# Record the computational environment for reproducibility.
-writeLines(
-  capture.output(sessionInfo()),
-  here::here("output", "logs", "sessionInfo.txt")
-)
+source("R/01_report_figures.R")
+source("R/02_parallel_trends.R")
+source("R/03_tariff_window_tables.R")
 
 message("Masterfile finished successfully.")
