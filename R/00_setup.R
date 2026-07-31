@@ -5,7 +5,10 @@
 # Loads only the final processed panel data - no raw loading/cleaning here.
 ###############################################################################
 
-packages <- c("here", "data.table", "arrow", "dplyr", "ggplot2", "lubridate")
+packages <- c(
+  "here", "data.table", "arrow", "dplyr", "ggplot2", "lubridate",
+  "tableone", "kableExtra", "tidyr", "readr"
+)
 
 missing_packages <- packages[!packages %in% rownames(installed.packages())]
 if (length(missing_packages) > 0) {

@@ -15,5 +15,6 @@ source("R/01_report_figures.R")
 source("R/02_parallel_trends.R")
 source("R/03_tariff_window_tables.R")
 source("R/04_report_tariff_regimes.R")
+source("R/05_survey_balance.R")
 
 message("Masterfile finished successfully.")

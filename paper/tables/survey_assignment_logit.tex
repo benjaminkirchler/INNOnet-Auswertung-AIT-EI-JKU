@@ -1,0 +1,39 @@
+\begin{table}[!h]
+\centering
+\caption{\label{tab:survey_assignment_logit}Logistische Regression der Treatmentzuordnung auf beobachtbare Survey-Merkmale, getrennt nach Netzgebiet. Angegeben sind Odds Ratios mit 95\%-Konfidenzintervallen und zweiseitigen p-Werten.}
+\centering
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\fontsize{8}{10}\selectfont
+\begin{tabular}[t]{llll}
+\toprule
+Netzgebiet & Merkmal & Odds Ratio (95\%-KI) & p-Wert\\
+\midrule
+Linz Netz & PV ohne Speicher (vs. keine PV) & 0.43 [0.14; 1.37] & 0.153\\
+Linz Netz & PV mit Speicher (vs. keine PV) & 0.54 [0.15; 1.87] & 0.330\\
+Linz Netz & PV-Leistung (kWp; Kategorienmittelpunkt) & 1.05 [0.94; 1.17] & 0.421\\
+Linz Netz & E-Fahrzeug & 2.01 [0.65; 6.27] & 0.227\\
+Linz Netz & Laden an eigener Wallbox & 0.62 [0.18; 2.08] & 0.435\\
+Linz Netz & Wohnfläche (m2) & 1.00 [0.99; 1.00] & 0.564\\
+Linz Netz & Haushaltsgröße (Personen) & 0.99 [0.68; 1.45] & 0.969\\
+Linz Netz & Eigentum & 1.67 [0.59; 4.75] & 0.334\\
+Linz Netz & Kinder unter 14 Jahren & 1.25 [0.55; 2.88] & 0.594\\
+Linz Netz & Kinderangabe fehlt & 1.43 [0.36; 5.73] & 0.609\\
+Linz Netz & Einkommen 3.501 bis 5.500 Euro & 0.83 [0.31; 2.22] & 0.704\\
+Linz Netz & Einkommen über 5.500 Euro & 0.53 [0.19; 1.47] & 0.223\\
+Linz Netz & Einkommen: keine Angabe & 0.84 [0.33; 2.15] & 0.712\\
+Netz Oberösterreich & PV ohne Speicher (vs. keine PV) & 0.99 [0.60; 1.66] & 0.983\\
+Netz Oberösterreich & PV mit Speicher (vs. keine PV) & 1.07 [0.61; 1.89] & 0.813\\
+Netz Oberösterreich & PV-Leistung (kWp; Kategorienmittelpunkt) & 1.01 [0.97; 1.06] & 0.583\\
+Netz Oberösterreich & E-Fahrzeug & 1.12 [0.72; 1.75] & 0.614\\
+Netz Oberösterreich & Laden an eigener Wallbox & 1.07 [0.67; 1.71] & 0.783\\
+Netz Oberösterreich & Wohnfläche (m2) & 1.00 [1.00; 1.00] & 0.144\\
+Netz Oberösterreich & Haushaltsgröße (Personen) & 1.04 [0.90; 1.20] & 0.597\\
+Netz Oberösterreich & Eigentum & 0.78 [0.33; 1.83] & 0.571\\
+Netz Oberösterreich & Kinder unter 14 Jahren & 1.05 [0.76; 1.44] & 0.764\\
+Netz Oberösterreich & Kinderangabe fehlt & 0.90 [0.45; 1.78] & 0.754\\
+Netz Oberösterreich & Einkommen 3.501 bis 5.500 Euro & 0.70 [0.49; 1.01] & 0.054\\
+Netz Oberösterreich & Einkommen über 5.500 Euro & 0.80 [0.54; 1.21] & 0.297\\
+Netz Oberösterreich & Einkommen: keine Angabe & 0.72 [0.50; 1.05] & 0.091\\
+\bottomrule
+\end{tabular}}
+\end{table}

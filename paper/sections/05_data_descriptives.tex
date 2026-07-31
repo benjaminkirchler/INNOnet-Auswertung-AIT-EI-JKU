@@ -13,6 +13,18 @@ Bevor die zeitlichen Muster betrachtet werden, ist die Verteilung der Messwerte 
     \label{fig:report_consumption_15m_density}
 \end{figure}
 
+\subsection{Balance der Haushaltsausstattung}
+
+Die Tabellen~\ref{tab:survey_equipment_balance_noe} und~\ref{tab:survey_equipment_balance_ln} vergleichen die im Rekrutierungssurvey erhobene Ausstattung und die Haushaltsmerkmale zwischen Treatment- und Kontrollgruppe. Für Linz Netz werden der dynamische und der statische Tarifarm zu einer Treatmentgruppe zusammengefasst. Der PV-Status und die PV-Leistung stammen ausschließlich aus dem Survey und nicht aus der Zählpunkt- oder Einspeiseinformation. Nicht beantwortete kategoriale Fragen werden als eigene Kategorie ausgewiesen; dadurch summieren sich die dargestellten Kategorien innerhalb jeder Gruppe auf 100\%.
+
+\input{paper/tables/survey_equipment_balance_noe}
+
+\input{paper/tables/survey_equipment_balance_ln}
+
+Ergänzend wird die binäre Treatmentzuordnung innerhalb jedes Netzgebiets auf die beobachtbaren Survey-Merkmale regressiert. Die gemeinsamen Likelihood-Ratio-Tests liefern weder für Linz Netz ($p=0{,}867$) noch für Netz Oberösterreich ($p=0{,}674$) Evidenz dafür, dass die Zuordnung systematisch von den gemeinsam berücksichtigten Observablen abhängt. Die McFadden-$R^2$-Werte betragen 0,025 beziehungsweise 0,007.
+
+\input{paper/tables/survey_assignment_logit}
+
 Tabelle~\ref{tab:consumption_15m_distribution} fasst dieselbe Verteilung numerisch zusammen. In allen Untersuchungsgruppen liegt der Median deutlich unter dem Mittelwert, und die oberen Perzentile liegen um ein Vielfaches über dem typischen Viertelstundenwert. Diese Schiefe ist ein zentraler Grund, weshalb die kausale Hauptspezifikation später als Poisson-Pseudo-Maximum-Likelihood-Modell geschätzt wird. OLS bleibt als ergänzende Spezifikation für absolute Effekte in kWh hilfreich, ist aber nicht die natürlichste Hauptspezifikation für die Viertelstundenlast.
 
 \input{paper/tables/report_table_consumption_15m_distribution.tex}
