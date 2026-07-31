@@ -11,18 +11,19 @@ Die INNOnet-Demonstrationen testen zwei unterschiedliche Ansätze lastabhängige
 
 \subsection{Capacity-based Time-of-Use in Netz Oberösterreich}
 
-Der Time-of-Use-Tarif in NOÖ basiert auf täglichen ex-ante Netzsimulationen. Für jede Stunde des Folgetages wird ein Netzzustand klassifiziert: Normalzustand, Überschusssituation oder Engpasssituation. Die Klassifikation wird den Haushalten jeweils am Vortag kommuniziert. Sei \(c_{it}\) der Stromverbrauch von Haushalt \(i\) in einem 15-Minuten-Intervall \(t\).
+Der Time-of-Use-Tarif in NOÖ basiert auf täglichen ex-ante Netzsimulationen. Für jede Stunde des Folgetages wird ein Netzzustand klassifiziert: Normalzustand, Überschusssituation oder Engpasssituation. Die Klassifikation wird den Haushalten jeweils am Vortag um 16:00~Uhr kommuniziert; die Tariffenster werden dabei zumindest im 1-Stunden-Raster (bzw. Vielfachen davon) angegeben. Sei \(c_{it}\) der Stromverbrauch von Haushalt \(i\) in einem 15-Minuten-Intervall \(t\) (in kWh je Viertelstunde).
 
-Im Normalzustand gilt ein konstanter Basistarif:
+Im Normalzustand gilt ein konstanter Basistarif aus summiertem Netznutzungs- und Netzverlustentgelt:
 \begin{equation}
-p^{\text{base}} = p^{\text{usage}} + p^{\text{loss}} = 4{,}66 + 0{,}796 \approx 5{,}5 \ \text{ct/kWh}.
+p^{\text{base}} \approx 6{,}8 \ \text{ct/kWh}.
 \end{equation}
+Zusätzlich entfällt für die teilnehmenden Haushalte die Pauschale des Netznutzungsentgelts von 48~\euro{}/Jahr.
 
-In Überschussperioden wird der Netztarif auf null gesetzt, sofern der Verbrauch einen Schwellenwert erreicht:
+In Überschussperioden (Niedrigtarif) wird der Netztarif auf null gesetzt, sofern der Verbrauch einen Schwellenwert überschreitet:
 \begin{equation}
 p_{it} =
 \begin{cases}
-0, & \text{falls } c_{it} \geq 0{,}25, \\
+0, & \text{falls } c_{it} > 0{,}25, \\
 p^{\text{base}}, & \text{sonst}.
 \end{cases}
 \end{equation}
@@ -31,13 +32,13 @@ In Engpassperioden gilt ein stufenweiser Hochtarif:
 \begin{equation}
 p_{it} =
 \begin{cases}
-15{,}7, & \text{falls } c_{it} \geq 1{,}0, \\
-10{,}2, & \text{falls } 0{,}5 \leq c_{it} < 1{,}0, \\
-p^{\text{base}}, & \text{falls } c_{it} < 0{,}5.
+20{,}4, & \text{falls } c_{it} > 1{,}0, \\
+13{,}6, & \text{falls } 0{,}5 < c_{it} \leq 1{,}0, \\
+p^{\text{base}}, & \text{falls } c_{it} \leq 0{,}5.
 \end{cases}
 \end{equation}
 
-Um synchronisierte Lastverschiebungen zu vermeiden, werden Haushalte in Gruppen mit unterschiedlich langen Hochpreisfenstern eingeteilt. Die Zeitfenster umfassen zwei, vier oder sechs Stunden und werden über die Zeit rotiert.
+Um synchronisierte Lastverschiebungen -- etwa das gleichzeitige Laden von Elektrofahrzeugen nach den Hochtariffenstern -- zu vermeiden, werden in der Nacht von 22:00 bis 06:00~Uhr alternierende Niedrig- und Hochtariffenster an die Haushalte (in Gruppen) ausgesendet. Die Anreize permutieren dabei über die Gruppen, sodass alle Teilnehmenden gleichberechtigt behandelt werden und keine synchronen Lastspitzen entstehen.
 
 \subsection{Daily Peak Pricing in Linz Netz}
 
