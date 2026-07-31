@@ -62,7 +62,7 @@
     text=gray!70!black,
     align=center,
     text width=3.3cm
-  ] at (\xI+1.75,1.22) {dünn besetzt,\\ zoneneinheitlich};
+  ] at (\xI+1.75,1.22) {};
 
   \foreach \yrow in {0.10,0.42,0.74}{
     \foreach \s/\col in {
@@ -108,7 +108,7 @@
     text=gray!70!black,
     align=center,
     text width=3.3cm
-  ] at (\xII+1.75,1.22) {dicht,\\ Gruppenrotation};
+  ] at (\xII+1.75,1.22) {};
 
   % 27. November 2025, oben: Rotationsgruppen 1 bis 3
   \drawhourrow{\xII}{0.775}{{L,L,L,H,H,L,L,L,L,H,H,L,L,L,L,H,H,L,L,L,L,L,H,H}}
@@ -140,7 +140,7 @@
     text=gray!70!black,
     align=center,
     text width=3.3cm
-  ] at (\xIII+1.75,1.22) {dünn besetzt,\\ zoneneinheitlich};
+  ] at (\xIII+1.75,1.22) {};
 
   \foreach \yrow in {0.10,0.42,0.74}{
     \foreach \s/\col in {
@@ -162,10 +162,7 @@
 
   \node[font=\footnotesize, text=gray!60!black, align=center]
     at (7.05,-1.10)
-    {Regime~I und III: schematische Viertelstundenintervalle,
-     nicht maßstabsgetreu. \\
-     Regime~II: tatsächlicher stündlicher Signalzustand,
-     27.--28. November 2025.};
+    {};
 
 \end{tikzpicture}
 \end{adjustbox}
@@ -194,23 +191,5 @@ regulärer Netztarif
 \vspace{1.0em}
 
 \caption{Tarifsignalregime und Signalstruktur auf Haushaltsebene}
-\caption*{\footnotesize \textit{Anmerkungen:}
-  Teil~A zeigt die drei Regime entlang des Interventionszeitraums.
-  Teil~B veranschaulicht die Signalstruktur für drei behandelte
-  Rotationsgruppen innerhalb einer Netzzone. Die Zeilen für Regime~I
-  und Regime~III sind schematische Beispiele: Beide Regime weisen eine
-  dünn besetzte, prognosebasierte Struktur auf, bei der alle
-  Tarifhaushalte einer Netzzone dieselbe Folge erhalten und die meisten
-  Intervalle im Normaltarif liegen. Die Zeilen für Regime~II sind nicht
-  schematisch, sondern zeigen die tatsächlich realisierten stündlichen
-  Signalzustände der drei Rotationsgruppen an zwei aufeinanderfolgenden
-  Tagen, dem 27. und 28. November 2025. In Regime~II ist jedes Intervall
-  aktiv; ein Normaltarifzustand besteht nicht. Die Gruppen erhalten
-  unterschiedliche Signalfolgen. Anders als in Regime~I und III
-  verlaufen die Signale in Regime~II in mehrstündigen Blöcken, deren
-  Grenzen sich von einem Kalendertag zum nächsten verschieben. Die
-  Zuordnung zu den Rotationsgruppen ist unabhängig vom Haushaltsverbrauch.
-  Die Tarifstufen sind in allen drei Regimen identisch; nur Signaldichte,
-  Vorhersagbarkeit und Rotationsstruktur ändern sich.}
 \label{fig:nooe_tariff_regimes}
 \end{figure}
