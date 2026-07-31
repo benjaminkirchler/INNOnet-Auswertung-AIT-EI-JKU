@@ -59,6 +59,33 @@ Abbildung~\ref{fig:report_seasonal_profiles} zeigt typische 24-Stunden-Profile v
 
 Für die folgenden deskriptiven Auswertungen ist diese Unterscheidung wichtig: In NOÖ beziehen sich die Signale auf Hoch-, Projekt-/Normal- und Niedrigtariffenster, während LN über Ausnahmefenster im Daily-Peak-Pricing funktioniert.
 
+\subsection{Deskriptive Tagesprofile der drei NOÖ-Signalregime}
+
+Die Abbildungen~\ref{fig:report_regime1_profile} bis \ref{fig:report_regime3_profile} zeigen den Netzbezug in den drei aufeinanderfolgenden NOÖ-Signalregimen. Sie dienen der deskriptiven Einordnung und sind nicht als kausale Effektschätzer zu verstehen. Insbesondere in den prognosebasierten Regimen~I und III hängen die ausgesendeten Tarifsignale von der lokalen Netzsituation ab.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\linewidth]{paper/figures/report_fig06_regime1_tagesprofil.png}
+    \caption{Mittlerer Netzbezug im Tagesverlauf in Regime~I. Die Hinterlegung zeigt den je Viertelstunde häufiger aktiven Niedrig- oder Hochtarif; eine intensivere Farbe steht für einen höheren Anteil der Regime-I-Tage mit diesem Signal.}
+    \label{fig:report_regime1_profile}
+\end{figure}
+
+Regime~II verwendete einen durchgehend aktiven, binären Tarif mit rotierenden Signalblöcken. Ein über alle Haushalte gepooltes Tagesprofil würde daher unterschiedliche tatsächlich ausgesendete Signalfolgen vermischen. Abbildung~\ref{fig:report_regime2_profile} ordnet den Kontrollhaushalten stattdessen die beobachtete Signalfolge derselben Netzzone und Rotationsgruppe zu und zeigt für jede Viertelstunde die unbereinigte Differenz zwischen Tarif- und Kontrollgruppe.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.96\linewidth]{paper/figures/report_fig07_regime2_tarifprofile.png}
+    \caption{Unbereinigte Differenz im mittleren Netzbezug zwischen Tarif- und Kontrollgruppe nach Tarifzustand in Regime~II. Positive Werte bedeuten einen höheren Netzbezug der Tarifgruppe; die Bänder zeigen punktweise Konfidenzintervalle auf dem 95\%-Niveau über Haushalte.}
+    \label{fig:report_regime2_profile}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\linewidth]{paper/figures/report_fig08_regime3_tagesprofil.png}
+    \caption{Mittlerer Netzbezug im Tagesverlauf in Regime~III. Die Hinterlegung markiert einen Tarifzustand nur dann, wenn er zur jeweiligen Viertelstunde an mindestens 15\% der Zonen-Tage aktiv war.}
+    \label{fig:report_regime3_profile}
+\end{figure}
+
 \subsection{Parallele Trends in der Vorperiode}
 
 Für die kausale Auswertung ist entscheidend, ob sich Tarif- und Kontrollgruppen vor Beginn der Intervention ähnlich entwickeln. Die Abbildungen~\ref{fig:report_pt_ln} und~\ref{fig:report_pt_noe} zeigen dazu den monatlichen Vorperiodenverlauf des täglichen Netzbezugs je Haushalt, getrennt nach Untersuchungsgruppe. Die Werte beruhen auf vollständigen Beobachtungstagen; die Bänder zeigen 95\%-Konfidenzintervalle über Haushalte, berechnet aus den monatlichen Haushaltsmitteln.
