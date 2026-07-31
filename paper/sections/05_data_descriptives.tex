@@ -88,20 +88,20 @@ Regime~II verwendete einen durchgehend aktiven, binären Tarif mit rotierenden S
 
 \subsection{Parallele Trends in der Vorperiode}
 
-Für die kausale Auswertung ist entscheidend, ob sich Tarif- und Kontrollgruppen vor Beginn der Intervention ähnlich entwickeln. Die Abbildungen~\ref{fig:report_pt_ln} und~\ref{fig:report_pt_noe} zeigen dazu den monatlichen Vorperiodenverlauf des täglichen Netzbezugs je Haushalt, getrennt nach Untersuchungsgruppe. Die Werte beruhen auf vollständigen Beobachtungstagen; die Bänder zeigen 95\%-Konfidenzintervalle über Haushalte, berechnet aus den monatlichen Haushaltsmitteln.
+Für die kausale Auswertung ist entscheidend, ob sich Tarif- und Kontrollgruppen vor Beginn der Intervention ähnlich entwickeln. Die Abbildungen~\ref{fig:report_pt_ln} und~\ref{fig:report_pt_noe} zeigen dazu für jede Stunde der Vorperiode die Differenz des mittleren Strombezugs zwischen Treatment- und Kontrollgruppe. Der Strombezug wird zunächst je Haushalt aus vier Viertelstundenwerten zu kWh pro Stunde summiert. Die Bänder zeigen 95\%-Konfidenzintervalle der Differenz der Gruppenmittelwerte.
 
-In LN verlaufen Kontrollgruppe und dynamischer Tarifarm über die gesamte Vorperiode nahezu deckungsgleich. Der statische Tarifarm liegt insbesondere in den Wintermonaten auf einem höheren Niveau, folgt aber demselben saisonalen Verlauf. Für die ökonometrische Analyse spricht dies dafür, den statischen Arm gesondert zu betrachten und Niveauunterschiede über Haushalts-Fixed-Effects aufzufangen. In NOÖ verlaufen Tarif- und Kontrollgruppe über die gesamte Vorperiode eng beieinander. Die formalen Event-Study-Tests im Ergebnisteil greifen diese deskriptiven Muster auf.
+Für Linz Netz werden der dynamische und der statische Tarifarm jeweils separat mit der Kontrollgruppe verglichen. Für Netz Oberösterreich wird die Tarifgruppe der Kontrollgruppe gegenübergestellt. Werte nahe null sprechen für ähnliche mittlere Verbrauchsniveaus in der jeweiligen Stunde; zeitlich systematische Abweichungen weisen auf Unterschiede zwischen den Gruppen hin. Die formalen Event-Study-Tests im Ergebnisteil greifen diese deskriptiven Muster auf.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{paper/figures/report_pt_ln_monthly_consumption.png}
-    \caption{Monatlicher Vorperiodenverlauf des täglichen Netzbezugs je Haushalt in Linz Netz nach Untersuchungsgruppe. Vollständige Beobachtungstage; die Bänder zeigen 95\%-Konfidenzintervalle über Haushalte.}
+    \includegraphics[width=1\linewidth]{paper/figures/report_pt_ln_hourly_difference.png}
+    \caption{Stündliche Differenz des mittleren Strombezugs in Linz Netz: dynamische beziehungsweise statische Tarifgruppe minus Kontrollgruppe. Der Stundenverbrauch wird je Haushalt aus vier Viertelstundenwerten summiert; die Bänder zeigen 95\%-Konfidenzintervalle.}
     \label{fig:report_pt_ln}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{paper/figures/report_pt_noe_monthly_consumption.png}
-    \caption{Monatlicher Vorperiodenverlauf des täglichen Netzbezugs je Haushalt in Netz Oberösterreich nach Untersuchungsgruppe. Vollständige Beobachtungstage; die Bänder zeigen 95\%-Konfidenzintervalle über Haushalte.}
+    \includegraphics[width=1\linewidth]{paper/figures/report_pt_noe_hourly_difference.png}
+    \caption{Stündliche Differenz des mittleren Strombezugs in Netz Oberösterreich: Tarifgruppe minus Kontrollgruppe. Der Stundenverbrauch wird je Haushalt aus vier Viertelstundenwerten summiert; das Band zeigt das 95\%-Konfidenzintervall.}
     \label{fig:report_pt_noe}
 \end{figure}

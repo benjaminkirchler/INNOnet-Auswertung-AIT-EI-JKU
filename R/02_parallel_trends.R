@@ -130,96 +130,150 @@ fwrite(
 )
 
 # ---------------------------------------------------------------------------
-# Plot 1: monthly pre-trends, LN
+# Hourly treatment-control differences
 # ---------------------------------------------------------------------------
 
-# Two-stage aggregation so the confidence band is a CI over households:
-# first the household's monthly mean, then mean/SD across those household
-# means. Using the day-level SD with the household-level n would mix the two
-# variance levels and mislabel the band.
-monthly_hh_ln <- daily_hh[
-  grid_operator == "LN",
-  .(hh_month_kwh = mean(daily_kwh, na.rm = TRUE)),
-  by = .(month_start, report_group, hh_id)
-]
-monthly_ln <- monthly_hh_ln[
+# First sum the four quarter-hour readings for every household-hour. Hours with
+# fewer than four valid readings are excluded so missing intervals cannot bias
+# the group means downward. UTC defines unique hours across both DST changes;
+# the plotted timestamps are subsequently displayed in Europe/Vienna time.
+hourly_hh <- arrow::open_dataset(panel_path, unify_schemas = TRUE) |>
+  dplyr::filter(
+    date >= pre_start,
+    date <= pre_end,
+    is.na(vzp_id_source) | vzp_id_source != "synthetic"
+  ) |>
+  dplyr::select(
+    time_utc, grid_operator, group_label, hh_id, cons_kwh_15m
+  ) |>
+  dplyr::mutate(hour_utc = floor_date(time_utc, "hour")) |>
+  dplyr::group_by(hour_utc, grid_operator, group_label, hh_id) |>
+  dplyr::summarise(
+    hourly_kwh = sum(cons_kwh_15m, na.rm = TRUE),
+    n_obs = sum(!is.na(cons_kwh_15m)),
+    .groups = "drop"
+  ) |>
+  dplyr::filter(n_obs == 4) |>
+  dplyr::collect() |>
+  as.data.table()
+
+hourly_stats <- hourly_hh[
   ,
   .(
-    mean_daily_kwh = mean(hh_month_kwh),
-    sd_daily_kwh = sd(hh_month_kwh),
+    mean_kwh = mean(hourly_kwh),
+    sd_kwh = sd(hourly_kwh),
     n_hh = uniqueN(hh_id)
   ),
-  by = .(month_start, report_group)
+  by = .(hour_utc, grid_operator, group_label)
 ]
-monthly_ln[, se := sd_daily_kwh / sqrt(n_hh)]
-monthly_ln[, ci_low := mean_daily_kwh - 1.96 * se]
-monthly_ln[, ci_high := mean_daily_kwh + 1.96 * se]
 
-p_ln <- ggplot(
-  monthly_ln,
-  aes(x = month_start, y = mean_daily_kwh, colour = report_group, fill = report_group)
-) +
-  geom_ribbon(aes(ymin = ci_low, ymax = ci_high), alpha = 0.12, colour = NA) +
-  geom_line(linewidth = 0.8) +
-  geom_point(size = 1.5) +
-  scale_colour_manual(values = group_colors, limits = group_levels[1:3]) +
-  scale_fill_manual(values = group_colors, limits = group_levels[1:3]) +
-  scale_x_date(date_breaks = "1 month", date_labels = "%b\n%Y") +
-  labs(
-    title = "Vorperiodenverlauf des täglichen Netzbezugs in Linz Netz",
-    x = NULL,
-    y = "kWh je Haushalt und Tag"
-  ) +
-  report_theme
+make_hourly_difference <- function(stats, operator, treatment_groups) {
+  control <- stats[
+    grid_operator == operator & group_label == "Kontroll",
+    .(
+      hour_utc,
+      control_mean = mean_kwh,
+      control_sd = sd_kwh,
+      control_n = n_hh
+    )
+  ]
 
-ggsave(
-  file.path(fig_dir, "report_pt_ln_monthly_consumption.png"),
-  p_ln, width = 10.5, height = 5.6, dpi = 300
+  treatment <- stats[
+    grid_operator == operator & group_label %in% treatment_groups,
+    .(
+      hour_utc,
+      comparison = group_label,
+      treatment_mean = mean_kwh,
+      treatment_sd = sd_kwh,
+      treatment_n = n_hh
+    )
+  ]
+
+  result <- merge(treatment, control, by = "hour_utc", all = FALSE)
+  result[, difference_kwh := treatment_mean - control_mean]
+  result[, se_difference := sqrt(
+    treatment_sd^2 / treatment_n + control_sd^2 / control_n
+  )]
+  result[, ci_low := difference_kwh - 1.96 * se_difference]
+  result[, ci_high := difference_kwh + 1.96 * se_difference]
+  result <- result[
+    is.finite(difference_kwh) & is.finite(ci_low) & is.finite(ci_high)
+  ]
+  result[, hour_local := with_tz(hour_utc, "Europe/Vienna")]
+  result[]
+}
+
+hourly_diff_ln <- make_hourly_difference(
+  hourly_stats, "LN", c("Dynamisch", "Statisch")
+)
+hourly_diff_ln[, comparison := factor(
+  comparison,
+  levels = c("Dynamisch", "Statisch"),
+  labels = c("Dynamisch − Kontrolle", "Statisch − Kontrolle")
+)]
+
+hourly_diff_noe <- make_hourly_difference(hourly_stats, "NOE", "Tarif")
+hourly_diff_noe[, comparison := factor(
+  comparison,
+  levels = "Tarif",
+  labels = "Tarif − Kontrolle"
+)]
+
+difference_colors <- c(
+  "Dynamisch − Kontrolle" = "#00A08A",
+  "Statisch − Kontrolle" = "#F2AD00",
+  "Tarif − Kontrolle" = "#F98400"
 )
 
-# ---------------------------------------------------------------------------
-# Plot 2: monthly pre-trends, NOÖ
-# ---------------------------------------------------------------------------
-
-# Same two-stage aggregation as for LN: CI over households.
-monthly_hh_noe <- daily_hh[
-  grid_operator == "NOE",
-  .(hh_month_kwh = mean(daily_kwh, na.rm = TRUE)),
-  by = .(month_start, report_group, hh_id)
-]
-monthly_noe <- monthly_hh_noe[
-  ,
-  .(
-    mean_daily_kwh = mean(hh_month_kwh),
-    sd_daily_kwh = sd(hh_month_kwh),
-    n_hh = uniqueN(hh_id)
-  ),
-  by = .(month_start, report_group)
-]
-monthly_noe[, se := sd_daily_kwh / sqrt(n_hh)]
-monthly_noe[, ci_low := mean_daily_kwh - 1.96 * se]
-monthly_noe[, ci_high := mean_daily_kwh + 1.96 * se]
+p_ln <- ggplot(
+  hourly_diff_ln,
+  aes(
+    x = hour_local, y = difference_kwh,
+    colour = comparison, fill = comparison, group = comparison
+  )
+) +
+  geom_hline(yintercept = 0, colour = "grey35", linewidth = 0.4) +
+  geom_ribbon(aes(ymin = ci_low, ymax = ci_high), alpha = 0.10, colour = NA) +
+  geom_line(linewidth = 0.25, alpha = 0.8) +
+  scale_colour_manual(values = difference_colors) +
+  scale_fill_manual(values = difference_colors) +
+  scale_x_datetime(date_breaks = "2 months", date_labels = "%b\n%Y") +
+  labs(
+    title = "Stündliche Verbrauchsdifferenzen in der Vorperiode – Linz Netz",
+    subtitle = "Treatment minus Kontrollgruppe; Bänder: 95%-Konfidenzintervalle",
+    x = NULL,
+    y = "Differenz des mittleren Strombezugs (kWh je Stunde)"
+  ) +
+  report_theme
 
 p_noe <- ggplot(
-  monthly_noe,
-  aes(x = month_start, y = mean_daily_kwh, colour = report_group, fill = report_group)
+  hourly_diff_noe,
+  aes(
+    x = hour_local, y = difference_kwh,
+    colour = comparison, fill = comparison, group = comparison
+  )
 ) +
+  geom_hline(yintercept = 0, colour = "grey35", linewidth = 0.4) +
   geom_ribbon(aes(ymin = ci_low, ymax = ci_high), alpha = 0.12, colour = NA) +
-  geom_line(linewidth = 0.8) +
-  geom_point(size = 1.5) +
-  scale_colour_manual(values = group_colors, limits = group_levels[4:5]) +
-  scale_fill_manual(values = group_colors, limits = group_levels[4:5]) +
-  scale_x_date(date_breaks = "1 month", date_labels = "%b\n%Y") +
+  geom_line(linewidth = 0.25, alpha = 0.85) +
+  scale_colour_manual(values = difference_colors) +
+  scale_fill_manual(values = difference_colors) +
+  scale_x_datetime(date_breaks = "2 months", date_labels = "%b\n%Y") +
   labs(
-    title = "Vorperiodenverlauf des täglichen Netzbezugs in Netz Oberösterreich",
+    title = "Stündliche Verbrauchsdifferenz in der Vorperiode – Netz Oberösterreich",
+    subtitle = "Tarifgruppe minus Kontrollgruppe; Band: 95%-Konfidenzintervall",
     x = NULL,
-    y = "kWh je Haushalt und Tag"
+    y = "Differenz des mittleren Strombezugs (kWh je Stunde)"
   ) +
   report_theme
 
 ggsave(
-  file.path(fig_dir, "report_pt_noe_monthly_consumption.png"),
-  p_noe, width = 10.5, height = 5.6, dpi = 300
+  file.path(fig_dir, "report_pt_ln_hourly_difference.png"),
+  p_ln, width = 11.5, height = 6.0, dpi = 300
+)
+ggsave(
+  file.path(fig_dir, "report_pt_noe_hourly_difference.png"),
+  p_noe, width = 11.5, height = 6.0, dpi = 300
 )
 
 print(pretrend_balance)
