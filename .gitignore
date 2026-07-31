@@ -11,6 +11,7 @@ output/*
 !output/
 !output/models/
 !output/**/.keep
+output/models/*.rds
 
 # LaTeX build artifacts
 *.aux
@@ -24,6 +25,9 @@ output/*
 *.fls
 *.fdb_latexmk
 *.toc
+*.lof
+*.lot
+main.pdf
 
 # renv library (keep renv.lock and settings, ignore the local library)
 renv/library/
@@ -41,5 +45,4 @@ AGENT_LOG.md
 IMPLEMENTATION_PLAN.md
 TODO.md
 
-# R scripts (kept local only, not pushed)
-R/
+# R scripts are part of the reproducible report pipeline and are versioned.
