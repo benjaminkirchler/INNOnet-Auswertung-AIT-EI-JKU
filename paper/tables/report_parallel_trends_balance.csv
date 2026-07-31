@@ -1,0 +1,6 @@
+grid_operator,report_group,n_hh,mean_daily_kwh,median_daily_kwh,mean_feed_in_kwh,mean_net_kwh,mean_daily_peak_kw
+LN,LN Kontroll,61,9.59,7.75,6.48,1.94,2.24
+LN,LN Dynamisch,125,9.64,7.91,5.45,3.05,2.33
+LN,LN Statisch,121,12.2,9.69,6.45,4.11,2.65
+NOE,NOÖ Kontroll,513,13.22,11.51,7.74,4.23,2.84
+NOE,NOÖ Tarif,495,13.5,12.16,8.98,2.92,2.99

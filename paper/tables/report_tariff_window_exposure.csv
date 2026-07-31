@@ -1,0 +1,4 @@
+tariff_design,n_hh,total_intervals,ln_exception_n,ln_rest_n,noe_ht_n,noe_pt_n,noe_nt_n,ln_exception_share,ln_rest_share,noe_ht_share,noe_pt_share,noe_nt_share
+LN statisch,121,3879744,471416,3408328,0,0,0,12.1506986027944,87.8493013972056,0,0,0
+LN dynamisch,125,4008000,383308,3624692,0,0,0,9.56357285429142,90.4364271457086,0,0,0
+NOÖ Tarif,495,15871680,0,0,4142384,8828760,2900536,0,0,26.0992157099942,55.6258694731749,18.274914816831
